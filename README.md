@@ -52,7 +52,7 @@ class MyController < Sinatra::Base
   end
   ...
 end
-
+```
 #
 
 If you use Sinatra or etc., you need to require it first somewhere in you project:
