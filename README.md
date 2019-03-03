@@ -42,7 +42,16 @@ redirect_post(*SOME_SETTINGS*)
 
 *Under the hood it calls `render` method of current controller with `html:`.*
 
+Example in Rails app:
 
+```ruby
+class MyController < Sinatra::Base
+  ...
+  def index
+    repost(*SOME_SETTINGS*)
+  end
+  ...
+end
 
 #
 
