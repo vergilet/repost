@@ -87,7 +87,7 @@ end
 *In Sinatra app or if you need to have just html - call Senpai*
 
 
-### Dafaq iz dis:
+#### Full example:
 
 ```ruby
 Repost::Senpai.perform('http://examp.io/endpoint',  # URL, looks understandable 
