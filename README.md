@@ -42,7 +42,7 @@ redirect_post(*SOME_SETTINGS*)
 
 *Under the hood it calls `render` method of current controller with `html:`.*
 
-Example in Rails app:
+### Example in Rails app:
 
 ```ruby
 class MyController < ApplicationController
@@ -53,7 +53,7 @@ class MyController < ApplicationController
   ...
 end
 ```
-#
+______________
 
 If you use Sinatra or etc., you need to require it first somewhere in you project:
 
@@ -68,7 +68,7 @@ Then ask your senpai to generate a string with html:
 Repost::Senpai.perform(*SOME_SETTINGS*)
 ```
 
-Example in Sinatra app:
+### Example in Sinatra app:
 
 ```ruby
 class MyController < Sinatra::Base
