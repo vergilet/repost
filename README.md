@@ -45,7 +45,7 @@ redirect_post(*SOME_SETTINGS*)
 Example in Rails app:
 
 ```ruby
-class MyController < Sinatra::Base
+class MyController < ApplicationController
   ...
   def index
     repost(*SOME_SETTINGS*)
