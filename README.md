@@ -27,6 +27,18 @@ Or install it yourself as:
 
     $ gem install repost
 
+
+
+## Diagram
+
+What problem does it solve:
+
+<p align="center">
+    <a href="https://user-images.githubusercontent.com/2478436/55143646-d0da3500-5147-11e9-91a3-1bac9d560fb2.png">
+  <img src="https://user-images.githubusercontent.com/2478436/55143646-d0da3500-5147-11e9-91a3-1bac9d560fb2.png"></a>
+</p>
+
+
 ## Usage
 
 If you use Rails, gem automatically includes helper methods to your controllers:
