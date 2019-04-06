@@ -5,7 +5,7 @@
 
 <p align="center">
     <a href="https://rubygems.org/gems/repost">
-  <img width="460" src="https://user-images.githubusercontent.com/2478436/51744536-cef0e880-20a8-11e9-90e0-1d0b80337d4f.png"></a>
+  <img width="460" src="https://user-images.githubusercontent.com/2478436/55672583-44491880-58a5-11e9-945c-939f90470df8.png"></a>
 </p>
 
 
