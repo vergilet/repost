@@ -8,7 +8,7 @@ module Repost
       @options         = options
       @method          = options[:method] || :post
       @form_id         = options[:form_id] || generated_form_id
-      @autosubmit      = options[:autosubmit] && true
+      @autosubmit      = options.fetch(:autosubmit, true)
       @section_classes = options.dig(:decor, :section, :classes)
       @section_html    = options.dig(:decor, :section, :html)
       @submit_classes  = options.dig(:decor, :submit, :classes)
