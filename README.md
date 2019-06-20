@@ -1,6 +1,18 @@
-# Repost
+<p align="right">
+    <a href="https://github.com/vergilet/repost"><img align="" src="https://user-images.githubusercontent.com/2478436/51829223-cb05d600-22f5-11e9-9245-bc6e82dcf028.png" width="56" height="56" /></a>
+<a href="https://rubygems.org/gems/repost"><img align="right" src="https://user-images.githubusercontent.com/2478436/51829691-c55cc000-22f6-11e9-99a5-42f88a8f2a55.png" width="56" height="56" /></a>
+</p>
 
-Gem implements Redirect using POST method
+<p align="center">
+    <a href="https://rubygems.org/gems/repost">
+  <img width="460" src="https://user-images.githubusercontent.com/2478436/55672583-44491880-58a5-11e9-945c-939f90470df8.png"></a>
+</p>
+
+
+
+Gem **Repost** implements Redirect using POST method
+
+[![Build Status](https://travis-ci.org/vergilet/repost.svg?branch=master)](https://travis-ci.org/vergilet/repost)
 
 ## Installation
 
@@ -18,6 +30,18 @@ Or install it yourself as:
 
     $ gem install repost
 
+
+
+## Diagram
+
+What problem does it solve?
+
+<p align="center">
+    <a href="https://user-images.githubusercontent.com/2478436/55143646-d0da3500-5147-11e9-91a3-1bac9d560fb2.png">
+  <img src="https://user-images.githubusercontent.com/2478436/55143646-d0da3500-5147-11e9-91a3-1bac9d560fb2.png"></a>
+</p>
+
+
 ## Usage
 
 If you use Rails, gem automatically includes helper methods to your controllers:
@@ -33,9 +57,18 @@ redirect_post(*SOME_SETTINGS*)
 
 *Under the hood it calls `render` method of current controller with `html:`.*
 
+### Example in Rails app:
 
-
-#
+```ruby
+class MyController < ApplicationController
+  ...
+  def index
+    repost(*SOME_SETTINGS*)
+  end
+  ...
+end
+```
+______________
 
 If you use Sinatra or etc., you need to require it first somewhere in you project:
 
@@ -50,7 +83,7 @@ Then ask your senpai to generate a string with html:
 Repost::Senpai.perform(*SOME_SETTINGS*)
 ```
 
-Example in Sinatra app:
+### Example in Sinatra app:
 
 ```ruby
 class MyController < Sinatra::Base
@@ -69,7 +102,7 @@ end
 *In Sinatra app or if you need to have just html - call Senpai*
 
 
-### Dafaq iz dis:
+#### Full example:
 
 ```ruby
 Repost::Senpai.perform('http://examp.io/endpoint',  # URL, looks understandable 
@@ -95,22 +128,4 @@ Repost::Senpai.perform('http://examp.io/endpoint',  # URL, looks understandable
 
 
 
-
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/repost. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Repost project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/repost/blob/master/CODE_OF_CONDUCT.md).
+**That's all folks.**
