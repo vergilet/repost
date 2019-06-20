@@ -8,8 +8,10 @@
   <img width="460" src="https://user-images.githubusercontent.com/2478436/55672583-44491880-58a5-11e9-945c-939f90470df8.png"></a>
 </p>
 
-
 Gem **Repost** implements Redirect using POST method
+
+[![Build Status](https://travis-ci.org/vergilet/repost.svg?branch=master)](https://travis-ci.org/vergilet/repost)
+
 
 ## Installation
 
