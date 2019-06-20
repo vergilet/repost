@@ -12,7 +12,6 @@ Gem **Repost** implements Redirect using POST method
 
 [![Build Status](https://travis-ci.org/vergilet/repost.svg?branch=master)](https://travis-ci.org/vergilet/repost)
 
-
 ## Installation
 
 Add this line to your application's Gemfile:
