@@ -21,7 +21,7 @@ module Repost
       else
         form_body << submit_section
       end
-      form_head.concat(compiled_body, form_footer)
+      form_head << compiled_body << form_footer
     end
 
     private

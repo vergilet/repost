@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["osyaroslav@gmail.com"]
 
   spec.summary       = %q{Gem implements Redirect using POST method}
-  spec.description   = %q{Helps to make POST 'redirect', but actually builds <form> with method: :post under the hood}
+  spec.description   = %q{Helps to make POST 'redirect', but actually builds [form] with method: :post under the hood}
   spec.homepage      = "https://vergilet.github.io/repost/"
   spec.license       = "MIT"
 

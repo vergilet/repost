@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    repost (0.2.6)
+    repost (0.2.8)
 
 GEM
   remote: https://rubygems.org/
@@ -32,4 +32,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
