@@ -47,12 +47,12 @@ What problem does it solve?
 If you use Rails, gem automatically includes helper methods to your controllers:
 
 ```ruby
-repost(*SOME_SETTINGS*)
+repost(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
 ```
 and, as an alias
 
 ```ruby
-redirect_post(*SOME_SETTINGS*)
+redirect_post(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
 ```
 
 *Under the hood it calls `render` method of current controller with `html:`.*
@@ -63,7 +63,7 @@ redirect_post(*SOME_SETTINGS*)
 class MyController < ApplicationController
   ...
   def index
-    repost(*SOME_SETTINGS*)
+    repost(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
   end
   ...
 end
