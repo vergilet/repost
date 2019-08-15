@@ -47,12 +47,12 @@ What problem does it solve?
 If you use Rails, gem automatically includes helper methods to your controllers:
 
 ```ruby
-repost(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
+repost(...)
 ```
 and, as an alias
 
 ```ruby
-redirect_post(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
+redirect_post(...)
 ```
 
 *Under the hood it calls `render` method of current controller with `html:`.*
@@ -63,7 +63,7 @@ redirect_post(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
 class MyController < ApplicationController
   ...
   def index
-    repost(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
+    repost(...)
   end
   ...
 end
@@ -80,7 +80,7 @@ Then ask your senpai to generate a string with html:
 
 
 ```ruby
-Repost::Senpai.perform(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
+Repost::Senpai.perform(...)
 ```
 
 ### Example in Sinatra app:
@@ -88,7 +88,7 @@ Repost::Senpai.perform(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS
 ```ruby
 class MyController < Sinatra::Base
   get '/' do
-    Repost::Senpai.perform(*SOME_URL*, params: *SOME_PARAMS*, options: *SOME_OPTIONS*)
+    Repost::Senpai.perform(...)
   end
 end
 ```
