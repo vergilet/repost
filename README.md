@@ -104,7 +104,7 @@ end
 
 #### Full example:
 
-*UPD: authenticity token is turned of by default. Use `:auto` or `'auto'` to turn on default authenticity token from Rails. Any other string value would be treated as custom auth token value.*
+*UPD: authenticity token is **turned off** by default. Use `:auto` or `'auto'` to turn on default authenticity token from Rails. Any other string value would be treated as custom auth token value.*
 
 ```ruby
 Repost::Senpai.perform('http://examp.io/endpoint',  # URL, looks understandable 
