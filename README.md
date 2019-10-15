@@ -12,6 +12,7 @@
 
 Gem **Repost** implements Redirect using POST method
 
+[![Gem Version](https://badge.fury.io/rb/repost.svg)](https://badge.fury.io/rb/repost)
 [![Build Status](https://travis-ci.org/vergilet/repost.svg?branch=master)](https://travis-ci.org/vergilet/repost)
 
 ## Installation
