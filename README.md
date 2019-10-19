@@ -8,14 +8,6 @@
   <img width="460" src="https://user-images.githubusercontent.com/2478436/55672583-44491880-58a5-11e9-945c-939f90470df8.png"></a>
 </p>
 
-
-<!-- Place this tag where you want the button to render. -->
-<a class="github-button" href="https://github.com/vergilet/repost" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vergilet/repost on GitHub">Star</a>
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-
 Gem **Repost** implements Redirect using POST method
 
 [![Gem Version](https://badge.fury.io/rb/repost.svg)](https://badge.fury.io/rb/repost)
