@@ -9,6 +9,12 @@
 </p>
 
 
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/vergilet/repost" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vergilet/repost on GitHub">Star</a>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
 
 Gem **Repost** implements Redirect using POST method
 
