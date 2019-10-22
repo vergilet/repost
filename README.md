@@ -140,7 +140,7 @@ Currently you can pass the **authenticity token** in two ways:
 
 * Recommended:
 
-    *Use `options` and `:auto` to pass the auth token. That should save you from any implementation changes in future Rails versions*
+    *Use `options` and `:auto` to pass the auth token. That should protect you from any implementation changes in future Rails versions*
 
     ```ruby
     redirect_post('https://exmaple.io/endpoint', options: {authenticity_token: :auto})
