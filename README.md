@@ -134,7 +134,7 @@ Repost::Senpai.perform('http://examp.io/endpoint',  # URL, looks understandable
 
 ```
 
-#### Authenticity Token (Rails)
+### Authenticity Token (Rails)
 
 Currently you can pass the **authenticity token** in two ways:
 
@@ -152,5 +152,13 @@ Currently you can pass the **authenticity token** in two ways:
     redirect_post('https://exmaple.io/endpoint', params: {authenticity_token: form_authenticity_token})
     ```
 
+
+
+## License
+The gem is available as open source under the terms of the MIT License.
+
+Copyright © 2019 Yaro.
+
+[![GitHub license](https://img.shields.io/dub/l/vibe-d.svg)](https://raw.githubusercontent.com/vergilet/open_dota_api/master/LICENSE)
 
 **That's all folks.**
