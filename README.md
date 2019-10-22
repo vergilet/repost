@@ -139,12 +139,14 @@ Repost::Senpai.perform('http://examp.io/endpoint',  # URL, looks understandable
 Currently you can pass the **authenticity token** in two ways:
 
 * Recommended:
+
     *Use `options` and `:auto` to pass the auth token. That should save you from any implementation changes in future Rails versions*
 
     ```ruby
     redirect_post('https://exmaple.io/endpoint', options: {authenticity_token: :auto})
     ```
 * Or, it is still valid:
+
     *`params` and `form_authenticity_token` method directly from ActionController*
     ```ruby
     redirect_post('https://exmaple.io/endpoint', params: {authenticity_token: form_authenticity_token})
