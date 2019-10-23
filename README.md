@@ -145,7 +145,7 @@ Currently you can pass the **authenticity token** in two ways:
     ```ruby
     redirect_post('https://exmaple.io/endpoint', options: {authenticity_token: :auto})
     ```
-* Or, it is still valid:
+* Or, it is still valid to:
 
     *`params` and `form_authenticity_token` method directly from ActionController*
     ```ruby
