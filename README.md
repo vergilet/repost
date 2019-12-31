@@ -74,7 +74,7 @@ end
 ```
 ______________
 
-If you use Sinatra or etc., you need to require it first somewhere in you project:
+If you use Sinatra, Roda or etc., you need to require it first somewhere in you project:
 
 ```ruby
 require 'repost'
@@ -87,7 +87,7 @@ Then ask your senpai to generate a string with html:
 Repost::Senpai.perform(...)
 ```
 
-### Example in Sinatra app:
+### Example in Sinatra, Roda, etc. app:
 
 ```ruby
 class MyController < Sinatra::Base
@@ -103,7 +103,7 @@ end
 
 - *In Rails app use `repost` or `redirect_post` method in your controller which performs 'redirect' when it is called.*
 
-- *In Sinatra app or if you need html output - call Senpai*
+- *In Sinatra, Roda, etc. app or if you need html output - call Senpai*
 
 
 #### Full example:
