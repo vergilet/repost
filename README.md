@@ -118,7 +118,7 @@ end
 
 
 # Rails
-redirect_post('http://examp.io/endpoint',  # URL, looks understandable 
+redirect_post('http://examp.io/endpoint',           # URL, looks understandable 
   params: {a: 1, b: 2, c: '3', d: "4"},             # Your request body
   options: {
     method: :post,                                  # OPTIONAL - DEFAULT is :post, but you can use others if needed
