@@ -31,9 +31,7 @@ Or install it yourself as:
 
 
 
-## Diagram
-
-What problem does it solve?
+## What problem does it solve?
 
 When you need to send some parameters to an endpoint which should redirect you after execution. There wouldn't be a problem if an endpoint receives [GET], because you can just use `redirect_to post_url(id: @model.id, token: model.token...)`.
 
