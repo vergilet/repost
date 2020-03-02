@@ -27,7 +27,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
-  rake (>= 12.3.3)
+  rake (~> 12.3)
   repost!
   rspec (~> 3.0)
 
