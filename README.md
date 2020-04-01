@@ -8,7 +8,9 @@
   <img width="460" src="https://user-images.githubusercontent.com/2478436/55672583-44491880-58a5-11e9-945c-939f90470df8.png"></a>
 </p>
 
-Gem **Repost** implements Redirect using POST method. Implementation story and some details - [Redirect using POST in Rails](https://medium.com/@momlookhowican/redirect-using-post-in-rails-5748da354343)
+Gem **Repost** implements Redirect using POST method. 
+
+Implementation story and some details - [Redirect using POST in Rails](https://medium.com/@momlookhowican/redirect-using-post-in-rails-5748da354343)
 
 [![Gem Version](https://badge.fury.io/rb/repost.svg)](https://badge.fury.io/rb/repost)
 [![Build Status](https://travis-ci.org/vergilet/repost.svg?branch=master)](https://travis-ci.org/vergilet/repost)
