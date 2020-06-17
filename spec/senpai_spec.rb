@@ -42,6 +42,26 @@ RSpec.describe Repost::Senpai do
         expect(html).to include("value='#{params[:boolean]}'")
       end
     end
+
+    describe 'with nested params' do
+      let(:params) do
+        {
+          top_level: {
+            top_level_item: "hello",
+            second_level: {
+              third_level: "qwerty",
+            },
+          },
+        }
+      end
+
+      it 'handles arbitrarily nested params' do
+        aggregate_failures do
+          expect(html).to include("name='top_level[top_level_item]' value='hello'")
+          expect(html).to include("name='top_level[second_level][third_level]' value='qwerty'")
+        end
+      end
+    end
   end
 
   describe 'with options' do

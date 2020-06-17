@@ -39,10 +39,20 @@ module Repost
 
     def form_body
       inputs = params.map do |key, value|
-        "<input type='hidden' name='#{key}' value='#{value}'>"
+        form_input(key, value)
       end
       inputs.unshift(csrf_token) if authenticity_token
       inputs.join
+    end
+
+    def form_input(key, value)
+      if value.is_a?(Hash)
+        value.map do |inner_key, inner_value|
+          form_input("#{key}[#{inner_key}]", inner_value)
+        end.join
+      else
+        "<input type='hidden' name='#{key}' value='#{value}'>"
+      end
     end
 
     def form_footer
