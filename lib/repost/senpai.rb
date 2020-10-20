@@ -12,6 +12,7 @@ module Repost
       @charset            = options.fetch(:charset, DEFAULT_CHARSET)
       @form_id            = options.fetch(:form_id, generated_form_id)
       @autosubmit         = options.fetch(:autosubmit, true)
+      @autosubmit_nonce   = options.fetch(:autosubmit_nonce, nil)
       @section_classes    = options.dig(:decor, :section, :classes)
       @section_html       = options.dig(:decor, :section, :html)
       @submit_classes     = options.dig(:decor, :submit, :classes)
@@ -31,7 +32,7 @@ module Repost
 
     attr_reader :url, :params, :options, :method, :form_id, :autosubmit,
                 :section_classes, :section_html, :submit_classes,
-                :submit_text, :authenticity_token, :charset
+                :submit_text, :authenticity_token, :charset, :autosubmit_nonce
 
     def form_head
       "<form id='#{form_id}' action='#{url}' method='#{method}' accept-charset='#{charset}'>"
@@ -81,7 +82,8 @@ module Repost
     end
 
     def auto_submit_script
-      "<script>
+      nonce_attr = %Q( nonce="#{autosubmit_nonce}") if autosubmit_nonce
+      "<script#{nonce_attr}>
         document.getElementById('#{form_id}').submit();
       </script>"
     end

@@ -108,6 +108,30 @@ RSpec.describe Repost::Senpai do
         end
       end
 
+      describe 'autosubmit_nonce' do
+        context 'enabled' do
+          let(:options) do
+            {
+              autosubmit_nonce: 'anonce',
+            }
+          end
+
+          it 'includes nonce as script attr' do
+            expect(html).to include '<script nonce="anonce">'
+          end
+        end
+
+        context 'nil' do
+          let(:options) do
+            {}
+          end
+
+          it 'is bare script tag' do
+            expect(html).to include '<script>'
+          end
+        end
+      end
+
       describe 'decor' do
 
       end

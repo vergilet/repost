@@ -7,7 +7,10 @@ if defined?(Rails) && defined?(ActiveSupport)
         render html: Repost::Senpai.perform(
           url,
           params: params,
-          options: options.merge({authenticity_token: authenticity_token}.compact)
+          options: options.merge({
+            authenticity_token: authenticity_token,
+            autosubmit_nonce: content_security_policy_nonce,
+          }.compact)
         ).html_safe
       end
 
