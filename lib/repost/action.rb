@@ -1,7 +1,7 @@
 module Repost
   class Action
-    def self.perform(*args)
-      action = new(*args)
+    def self.perform(*args, **kw_args)
+      action = new(*args, **kw_args)
       action.perform
     end
   end
