@@ -66,13 +66,17 @@ RSpec.describe Repost::Senpai do
     describe 'with array params' do
       let(:params) do
         {
-          top_level: ['hello'],
+          multi_item: ["hello"],
+          second_level: {
+            multi_item: ["qwerty"]
+          }
         }
       end
 
       it 'handles enumerable params' do
         aggregate_failures do
-          expect(html).to include("name='top_level[]' value='hello'")
+          expect(html).to include("name='multi_item[]' value='hello'")
+          expect(html).to include("name='second_level[multi_item][]' value='qwerty'")
         end
       end
     end
