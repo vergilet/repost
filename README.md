@@ -121,7 +121,12 @@ end
 
 # Rails
 redirect_post('http://examp.io/endpoint',            # URL, looks understandable 
-  params: { a: 1, b: '2', c: "3", d: { nested: 4 }}, # Your request body, also nested params           
+  params: { 
+            a: 1, 
+            'b': { "c": 2 }, 
+            d: [ 3, 4, 5 ], 
+            e: { f: 'string', g: [ 6, 7, 8 ] } 
+          },                                         # Your request body, also nested params and arrays       
   options: {
     method: :post,                                   # OPTIONAL - DEFAULT is :post, but you can use others if needed
     authenticity_token: 'auto',                      # OPTIONAL - :auto or 'auto' for Rails form_authenticity_token, string - custom token
