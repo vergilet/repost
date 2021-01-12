@@ -62,6 +62,20 @@ RSpec.describe Repost::Senpai do
         end
       end
     end
+
+    describe 'with array params' do
+      let(:params) do
+        {
+          top_level: ['hello'],
+        }
+      end
+
+      it 'handles enumerable params' do
+        aggregate_failures do
+          expect(html).to include("name='top_level[]' value='hello'")
+        end
+      end
+    end
   end
 
   describe 'with options' do

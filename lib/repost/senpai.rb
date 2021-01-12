@@ -47,9 +47,14 @@ module Repost
     end
 
     def form_input(key, value)
-      if value.is_a?(Hash)
+      case value
+      when Hash
         value.map do |inner_key, inner_value|
           form_input("#{key}[#{inner_key}]", inner_value)
+        end.join
+      when Array
+        value.map do |inner_value|
+          form_input("#{key}[]", inner_value)
         end.join
       else
         "<input type='hidden' name='#{key}' value='#{value}'>"
