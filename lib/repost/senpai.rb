@@ -57,7 +57,7 @@ module Repost
           form_input("#{key}[]", inner_value)
         end.join
       else
-        "<input type='hidden' name='#{key}' value='#{value}'>"
+        "<input type='hidden' name='#{key}' value=#{process_value(value)}>"
       end
     end
 
@@ -91,6 +91,11 @@ module Repost
       "<script#{nonce_attr}>
         document.getElementById('#{form_id}').submit();
       </script>"
+    end
+
+    def process_value(value)
+      return value if value.is_a?(Integer)
+      '\'' + value.to_s + '\''
     end
   end
 end

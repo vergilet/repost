@@ -38,7 +38,7 @@ RSpec.describe Repost::Senpai do
         expect(html).to include("value='#{params[:string_size]}'")
         expect(html).to include("value='#{params[:string_boolean]}'")
 
-        expect(html).to include("value='#{params[:count]}'")
+        expect(html).to include("value=#{params[:count]}")
         expect(html).to include("value='#{params[:boolean]}'")
       end
     end
@@ -50,6 +50,7 @@ RSpec.describe Repost::Senpai do
             top_level_item: "hello",
             second_level: {
               third_level: "qwerty",
+              array: [1, 2, "3", {a: 4, b: "5"}]
             },
           },
         }
@@ -59,6 +60,11 @@ RSpec.describe Repost::Senpai do
         aggregate_failures do
           expect(html).to include("name='top_level[top_level_item]' value='hello'")
           expect(html).to include("name='top_level[second_level][third_level]' value='qwerty'")
+          expect(html).to include("name='top_level[second_level][array][]' value=1")
+          expect(html).to include("name='top_level[second_level][array][]' value=2")
+          expect(html).to include("name='top_level[second_level][array][]' value='3'")
+          expect(html).to include("name='top_level[second_level][array][][a]' value=4")
+          expect(html).to include("name='top_level[second_level][array][][b]' value='5'")
         end
       end
     end
