@@ -3,6 +3,7 @@ if defined?(Rails) && defined?(ActiveSupport)
     class ::ActionController::Base
 
       def repost(url, params: {}, options: {})
+        status = options.delete(:status) || :ok
         authenticity_token = form_authenticity_token if ['auto', :auto].include?(options[:authenticity_token])
         render html: Repost::Senpai.perform(
           url,
@@ -11,7 +12,7 @@ if defined?(Rails) && defined?(ActiveSupport)
             authenticity_token: authenticity_token,
             autosubmit_nonce: content_security_policy_nonce,
           }.compact)
-        ).html_safe
+        ).html_safe, status: status
       end
 
       alias :redirect_post :repost
