@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    repost (0.3.7)
+    repost (0.3.8)
 
 GEM
   remote: https://rubygems.org/
