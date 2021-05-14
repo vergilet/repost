@@ -35,7 +35,7 @@ Or install it yourself as:
 
 ## What problem does it solve?
 
-When you need to send some parameters to an endpoint which should redirect you after execution. There wouldn't be a problem if an endpoint receives [GET], because you can just use `redirect_to post_url(id: @model.id, token: model.token...)`.
+When you need to send some parameters to an endpoint which should redirect you after execution. There wouldn't be a problem if an endpoint receives [GET], because you can just use `redirect_to entity_url(id: @model.id, token: model.token...)`.
 
 But when an endpoint receives [POST], you have to generate html form and submit it. So `repost` gem helps to avoid creation of additional view with html form, just use `redirect_post` method instead.
 I faced with this problem when was dealing with bank transactions. You can see the approximate scheme:
