@@ -88,7 +88,7 @@ If you use Sinatra, Roda or etc., you need to require it first somewhere in you 
 require 'repost'
 ```
 
-Then ask your senpai to generate a string with html:
+Then ask senpai to generate a string with html:
 
 
 ```ruby
