@@ -8,7 +8,7 @@ RSpec.describe Repost::Senpai do
     aggregate_failures do
       expect(html).to include('form')
       expect(html).to include(url)
-      expect(html).to include("type='submit'")
+      expect(html).to include("type=\"submit\"")
     end
   end
 
@@ -24,7 +24,9 @@ RSpec.describe Repost::Senpai do
         count: 696,
         string_size: '234',
         boolean: true,
-        string_boolean: 'false'
+        string_boolean: 'false',
+        quoted_string: "Tuan O'Keefe",
+        double_quoted_string: "Sam O\"Daren"
       }
     end
 
@@ -32,14 +34,17 @@ RSpec.describe Repost::Senpai do
 
     it 'generates post form' do
       aggregate_failures do
-        expect(html).to include("input type='hidden'")
-        expect(html).to include("value='#{params[:name]}'")
-        expect(html).to include("value='#{params[:description]}'")
-        expect(html).to include("value='#{params[:string_size]}'")
-        expect(html).to include("value='#{params[:string_boolean]}'")
+        puts html
+        expect(html).to include("input type=\"hidden\"")
+        expect(html).to include("value=\"#{params[:name]}\"")
+        expect(html).to include("value=\"#{params[:description]}\"")
+        expect(html).to include("value=\"#{params[:string_size]}\"")
+        expect(html).to include("value=\"#{params[:string_boolean]}\"")
+        expect(html).to include("value=\"#{params[:quoted_string]}\"")
+        expect(html).to include("value=\"#{params[:double_quoted_string].gsub("\"", "\'")}\"")
 
         expect(html).to include("value=#{params[:count]}")
-        expect(html).to include("value='#{params[:boolean]}'")
+        expect(html).to include("value=\"#{params[:boolean]}\"")
       end
     end
 
@@ -58,13 +63,13 @@ RSpec.describe Repost::Senpai do
 
       it 'handles arbitrarily nested params' do
         aggregate_failures do
-          expect(html).to include("name='top_level[top_level_item]' value='hello'")
-          expect(html).to include("name='top_level[second_level][third_level]' value='qwerty'")
-          expect(html).to include("name='top_level[second_level][array][]' value=1")
-          expect(html).to include("name='top_level[second_level][array][]' value=2")
-          expect(html).to include("name='top_level[second_level][array][]' value='3'")
-          expect(html).to include("name='top_level[second_level][array][][a]' value=4")
-          expect(html).to include("name='top_level[second_level][array][][b]' value='5'")
+          expect(html).to include("name=\"top_level[top_level_item]\" value=\"hello\"")
+          expect(html).to include("name=\"top_level[second_level][third_level]\" value=\"qwerty\"")
+          expect(html).to include("name=\"top_level[second_level][array][]\" value=1")
+          expect(html).to include("name=\"top_level[second_level][array][]\" value=2")
+          expect(html).to include("name=\"top_level[second_level][array][]\" value=\"3\"")
+          expect(html).to include("name=\"top_level[second_level][array][][a]\" value=4")
+          expect(html).to include("name=\"top_level[second_level][array][][b]\" value=\"5\"")
         end
       end
     end
@@ -81,8 +86,8 @@ RSpec.describe Repost::Senpai do
 
       it 'handles enumerable params' do
         aggregate_failures do
-          expect(html).to include("name='multi_item[]' value='hello'")
-          expect(html).to include("name='second_level[multi_item][]' value='qwerty'")
+          expect(html).to include("name=\"multi_item[]\" value=\"hello\"")
+          expect(html).to include("name=\"second_level[multi_item][]\" value=\"qwerty\"")
         end
       end
     end

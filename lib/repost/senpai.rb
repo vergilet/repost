@@ -35,7 +35,7 @@ module Repost
                 :submit_text, :authenticity_token, :charset, :autosubmit_nonce
 
     def form_head
-      "<form id='#{form_id}' action='#{url}' method='#{method}' accept-charset='#{charset}'>"
+      %Q(<form id="#{form_id}" action="#{url}" method="#{method}" accept-charset="#{charset}">)
     end
 
     def form_body
@@ -57,29 +57,29 @@ module Repost
           form_input("#{key}[]", inner_value)
         end.join
       else
-        "<input type='hidden' name='#{key}' value=#{process_value(value)}>"
+        %Q(<input type="hidden" name="#{key}" value=#{process_value(value)}>)
       end
     end
 
     def form_footer
-      "</form>"
+      %Q(</form>)
     end
 
     def csrf_token
-      "<input name='authenticity_token' value='#{authenticity_token}' type='hidden'>"
+      %Q(<input name="authenticity_token" value="#{authenticity_token}" type="hidden">)
     end
 
     def no_script
-      "<noscript>
+      %Q(<noscript>
         #{submit_section}
-      </noscript>"
+      </noscript>)
     end
 
     def submit_section
-      "<div class='#{section_classes}'>
+      %Q(<div class="#{section_classes}">
         #{section_html}
-        <input class='#{submit_classes}' type='submit' value='#{submit_text}'></input>
-      </div>"
+        <input class="#{submit_classes}" type="submit" value="#{submit_text}"></input>
+      </div>)
     end
 
     def generated_form_id
@@ -88,14 +88,14 @@ module Repost
 
     def auto_submit_script
       nonce_attr = %Q( nonce="#{autosubmit_nonce}") if autosubmit_nonce
-      "<script#{nonce_attr}>
-        document.getElementById('#{form_id}').submit();
-      </script>"
+      %Q(<script#{nonce_attr}>
+        document.getElementById("#{form_id}").submit();
+      </script>)
     end
 
     def process_value(value)
       return value if value.is_a?(Integer)
-      '\'' + value.to_s + '\''
+      %Q("#{value.to_s.gsub("\"", '\'')}")
     end
   end
 end
