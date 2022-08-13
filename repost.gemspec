@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Gem implements Redirect using POST method}
   spec.description   = %q{Helps to make POST 'redirect', but actually builds [form] with method: :post under the hood}
-  spec.homepage      = "https://vergilet.github.io/repost/"
+  spec.homepage      = "https://github.com/vergilet/repost"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

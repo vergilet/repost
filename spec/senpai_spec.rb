@@ -42,7 +42,6 @@ RSpec.describe Repost::Senpai do
         expect(html).to include("value=\"#{params[:string_boolean]}\"")
         expect(html).to include("value=\"#{params[:quoted_string]}\"")
         expect(html).to include("value=\"#{params[:double_quoted_string].gsub("\"", "\'")}\"")
-
         expect(html).to include("value=#{params[:count]}")
         expect(html).to include("value=\"#{params[:boolean]}\"")
       end
@@ -106,7 +105,6 @@ RSpec.describe Repost::Senpai do
     context 'set options' do
       describe 'autosubmit' do
         context 'enabled' do
-
           let(:options) do
             {
               autosubmit: true
@@ -162,7 +160,6 @@ RSpec.describe Repost::Senpai do
       end
 
       describe 'decor' do
-
       end
     end
   end
