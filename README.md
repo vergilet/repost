@@ -14,7 +14,7 @@ Gem **Repost** implements Redirect using POST method.
 Implementation story and some details in the following article [Redirect using POST in Rails](https://medium.com/@momlookhowican/redirect-using-post-in-rails-5748da354343).
 
 [![Gem Version](https://badge.fury.io/rb/repost.svg)](https://badge.fury.io/rb/repost)
-[![Build Status](https://travis-ci.com/vergilet/repost.svg?branch=master)](https://travis-ci.com/vergilet/repost)
+[![Build Status](https://travis-ci.org/vergilet/repost.svg?branch=master)](https://travis-ci.com/vergilet/repost)
 
 ## Installation
 
