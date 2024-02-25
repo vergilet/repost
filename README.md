@@ -50,6 +50,9 @@ I faced with this problem when was dealing with bank transactions. You can see t
   <img src="https://user-images.githubusercontent.com/2478436/55143646-d0da3500-5147-11e9-91a3-1bac9d560fb2.png"></a>
 </p>
 
+> **P.S. The `repost` gem was initially created in response to the redirection process required by [Adyen 3D Secure 1](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce/3d-secure/3d-secure-1/#step-2-redirect-to-the-card-issuer), which often involved creating an HTML form and submitting it via POST. <br>
+However, with the advent of 3D Secure 2, which aims for a more integrated authentication experience, the use of such forms for POST submissions has not been encountered. 3D Secure 2 typically manages authentication data exchanges in the background, potentially eliminating the need for manual form submission.**
+
 
 ## Usage
 
