@@ -1,3 +1,5 @@
+require 'cgi'
+
 module Repost
   class Senpai < Action
     DEFAULT_SUBMIT_BUTTON_TEXT = 'Continue'
@@ -21,10 +23,10 @@ module Repost
 
     def perform
       compiled_body = if autosubmit
-        form_body << auto_submit_script << no_script
-      else
-        form_body << submit_section
-      end
+                        form_body << auto_submit_script << no_script
+                      else
+                        form_body << submit_section
+                      end
       form_head << compiled_body << form_footer
     end
 
@@ -34,8 +36,12 @@ module Repost
                 :section_classes, :section_html, :submit_classes,
                 :submit_text, :authenticity_token, :charset, :autosubmit_nonce
 
+    def escape(value)
+      CGI.escapeHTML(value.to_s)
+    end
+
     def form_head
-      %Q(<form id="#{form_id}" action="#{url}" method="#{method}" accept-charset="#{charset}">)
+      %Q(<form id="#{escape(form_id)}" action="#{escape(url)}" method="#{escape(method)}" accept-charset="#{escape(charset)}">)
     end
 
     def form_body
@@ -57,7 +63,7 @@ module Repost
           form_input("#{key}[]", inner_value)
         end.join
       else
-        %Q(<input type="hidden" name="#{key}" value=#{process_value(value)}>)
+        %Q(<input type="hidden" name="#{escape(key)}" value="#{escape(value)}">)
       end
     end
 
@@ -66,19 +72,17 @@ module Repost
     end
 
     def csrf_token
-      %Q(<input name="authenticity_token" value="#{authenticity_token}" type="hidden">)
+      %Q(<input name="authenticity_token" value="#{escape(authenticity_token)}" type="hidden">)
     end
 
     def no_script
-      %Q(<noscript>
-        #{submit_section}
-      </noscript>)
+      %Q(<noscript>#{submit_section}</noscript>)
     end
 
     def submit_section
-      %Q(<div class="#{section_classes}">
+      %Q(<div class="#{escape(section_classes)}">
         #{section_html}
-        <input class="#{submit_classes}" type="submit" value="#{submit_text}"></input>
+        <input class="#{escape(submit_classes)}" type="submit" value="#{escape(submit_text)}">
       </div>)
     end
 
@@ -87,15 +91,10 @@ module Repost
     end
 
     def auto_submit_script
-      nonce_attr = %Q( nonce="#{autosubmit_nonce}") if autosubmit_nonce
+      nonce_attr = %Q( nonce="#{escape(autosubmit_nonce)}") if autosubmit_nonce
       %Q(<script#{nonce_attr}>
-        document.getElementById("#{form_id}").submit();
+        document.getElementById("#{escape(form_id)}").submit();
       </script>)
-    end
-
-    def process_value(value)
-      return value if value.is_a?(Integer)
-      %Q("#{value.to_s.gsub("\"", '\'')}")
     end
   end
 end
