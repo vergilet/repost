@@ -136,7 +136,7 @@ redirect_post('http://examp.io/endpoint',            # URL, looks understandable
             e: { f: 'string', g: [ 6, 7, 8 ] }
           },                                         # Your request body, also nested params and arrays
   options: {
-    method: :post,                                   # OPTIONAL - DEFAULT is :post, but you can use others if needed
+    method: :post,                                   # OPTIONAL - DEFAULT is :post. :put/:patch/:delete are sent as POST with a hidden "_method" field (Rails-style override)
     status: :ok,                                     # OPTIONAL - DEFAULT is :ok. This is the http status that the form will be returned with.
     authenticity_token: 'auto',                      # OPTIONAL - :auto or 'auto' for Rails form_authenticity_token, string - custom token
     charset: 'Windows-1251',                         # OPTIONAL - DEFAULT is "UTF-8", corresponds for accept-charset
@@ -146,7 +146,7 @@ redirect_post('http://examp.io/endpoint',            # URL, looks understandable
     decor: {                                         # If autosubmit is turned off or Javascript is disabled on client
       section: {                                     # ... you can decorate confirmation section and button
         classes: 'red-bg red-text',                  # OPTIONAL - <DIV> section, set classNames, separate with space
-        html: '<h1>Press this button, dude!</h1>'    # OPTIONAL - Any html, which will appear before submit button
+        html: '<h1>Press this button, dude!</h1>'    # OPTIONAL - Any html, which will appear before submit button. Rendered as-is (NOT escaped) - never pass user input here
       },
       submit: {
         classes: 'button-decorated round-border',    # OPTIONAL - <Input> with type submit, set classNames, separate with space

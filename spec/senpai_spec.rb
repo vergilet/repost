@@ -34,16 +34,30 @@ RSpec.describe Repost::Senpai do
 
     it 'generates post form' do
       aggregate_failures do
-        puts html
         expect(html).to include("input type=\"hidden\"")
         expect(html).to include("value=\"#{params[:name]}\"")
         expect(html).to include("value=\"#{params[:description]}\"")
         expect(html).to include("value=\"#{params[:string_size]}\"")
         expect(html).to include("value=\"#{params[:string_boolean]}\"")
-        expect(html).to include("value=\"#{params[:quoted_string]}\"")
-        expect(html).to include("value=\"#{params[:double_quoted_string].gsub("\"", "\'")}\"")
-        expect(html).to include("value=#{params[:count]}")
+        expect(html).to include("value=\"Tuan O&#39;Keefe\"")
+        expect(html).to include("value=\"Sam O&quot;Daren\"")
+        expect(html).to include("value=\"#{params[:count]}\"")
         expect(html).to include("value=\"#{params[:boolean]}\"")
+      end
+    end
+
+    describe 'with unsafe values' do
+      let(:params) do
+        {
+          xss: %q("><script>alert(1)</script>)
+        }
+      end
+
+      it 'escapes html in attribute values' do
+        aggregate_failures do
+          expect(html).to_not include('<script>alert(1)</script>')
+          expect(html).to include('value="&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;"')
+        end
       end
     end
 
@@ -64,10 +78,10 @@ RSpec.describe Repost::Senpai do
         aggregate_failures do
           expect(html).to include("name=\"top_level[top_level_item]\" value=\"hello\"")
           expect(html).to include("name=\"top_level[second_level][third_level]\" value=\"qwerty\"")
-          expect(html).to include("name=\"top_level[second_level][array][]\" value=1")
-          expect(html).to include("name=\"top_level[second_level][array][]\" value=2")
+          expect(html).to include("name=\"top_level[second_level][array][]\" value=\"1\"")
+          expect(html).to include("name=\"top_level[second_level][array][]\" value=\"2\"")
           expect(html).to include("name=\"top_level[second_level][array][]\" value=\"3\"")
-          expect(html).to include("name=\"top_level[second_level][array][][a]\" value=4")
+          expect(html).to include("name=\"top_level[second_level][array][][a]\" value=\"4\"")
           expect(html).to include("name=\"top_level[second_level][array][][b]\" value=\"5\"")
         end
       end
@@ -159,7 +173,74 @@ RSpec.describe Repost::Senpai do
         end
       end
 
+      describe 'method' do
+        context 'default' do
+          it 'submits via post without override' do
+            aggregate_failures do
+              expect(html).to include('method="post"')
+              expect(html).to_not include('name="_method"')
+            end
+          end
+        end
+
+        context 'get' do
+          let(:options) { { method: :get } }
+
+          it 'submits via get without override' do
+            aggregate_failures do
+              expect(html).to include('method="get"')
+              expect(html).to_not include('name="_method"')
+            end
+          end
+        end
+
+        context 'patch' do
+          let(:options) { { method: :patch } }
+
+          it 'submits via post with a _method override field' do
+            aggregate_failures do
+              expect(html).to include('method="post"')
+              expect(html).to include('<input type="hidden" name="_method" value="patch">')
+            end
+          end
+        end
+      end
+
       describe 'decor' do
+        let(:options) do
+          {
+            autosubmit: false,
+            decor: {
+              section: {
+                classes: 'red-bg red-text',
+                html: '<h1>Press this button!</h1>'
+              },
+              submit: {
+                classes: 'button-decorated',
+                text: 'Pay now'
+              }
+            }
+          }
+        end
+
+        it 'decorates the confirmation section' do
+          aggregate_failures do
+            expect(html).to include('<div class="red-bg red-text">')
+            expect(html).to include('<h1>Press this button!</h1>')
+            expect(html).to include('<input class="button-decorated" type="submit" value="Pay now">')
+          end
+        end
+
+        context 'without decor' do
+          let(:options) { { autosubmit: false } }
+
+          it 'omits class attributes' do
+            aggregate_failures do
+              expect(html).to_not include('class=""')
+              expect(html).to include('<input type="submit" value="Continue">')
+            end
+          end
+        end
       end
     end
   end
