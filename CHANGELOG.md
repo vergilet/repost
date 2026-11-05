@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.6.0
+## 0.6.0 (2026-11-05)
 
 ### Security
 - The target URL must be `http`, `https` or relative. `javascript:`, `data:` and other schemes now raise `Repost::UnsafeUrlError`, because escaping can't make them safe. Allow more schemes with `options: { allowed_schemes: %w[https myapp] }`.
