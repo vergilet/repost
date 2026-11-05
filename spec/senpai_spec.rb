@@ -13,7 +13,7 @@ RSpec.describe Repost::Senpai do
   end
 
   it 'autosubmit form by default' do
-    expect(html).to include('.submit()')
+    expect(html).to include('.submit.call(')
   end
 
   describe 'with params' do
@@ -57,6 +57,17 @@ RSpec.describe Repost::Senpai do
         aggregate_failures do
           expect(html).to_not include('<script>alert(1)</script>')
           expect(html).to include('value="&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;"')
+        end
+      end
+    end
+
+    describe 'with a param named "submit"' do
+      let(:params) { { submit: 'Pay' } }
+
+      it 'autosubmits via the prototype, since the input shadows form.submit' do
+        aggregate_failures do
+          expect(html).to include('<input type="hidden" name="submit" value="Pay">')
+          expect(html).to include('HTMLFormElement.prototype.submit.call(document.getElementById(')
         end
       end
     end
@@ -112,7 +123,7 @@ RSpec.describe Repost::Senpai do
 
     context 'empty options' do
       it 'autosubmit form by default' do
-        expect(html).to include('.submit()')
+        expect(html).to include('.submit.call(')
       end
     end
 
@@ -127,7 +138,7 @@ RSpec.describe Repost::Senpai do
 
           it 'returns submit function' do
             aggregate_failures do
-              expect(html).to include('.submit()')
+              expect(html).to include('.submit.call(')
               expect(html).to include('<noscript>')
             end
           end
@@ -142,8 +153,25 @@ RSpec.describe Repost::Senpai do
 
           it "doesn't return submit function" do
             aggregate_failures do
-              expect(html).to_not include('.submit()')
+              expect(html).to_not include('.submit.call(')
               expect(html).to_not include('<noscript>')
+            end
+          end
+        end
+      end
+
+      describe 'form_id' do
+        context 'with characters special to html or js' do
+          let(:options) { { form_id: %q(pay"form</script>) } }
+
+          it 'html-escapes the id attribute' do
+            expect(html).to include('id="pay&quot;form&lt;/script&gt;"')
+          end
+
+          it 'js-escapes the id in the autosubmit script' do
+            aggregate_failures do
+              expect(html).to include('getElementById("pay\"form\u003c/script\u003e")')
+              expect(html.scan('</script>').size).to eq(1)
             end
           end
         end

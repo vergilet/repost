@@ -1,4 +1,5 @@
 require 'cgi'
+require 'json'
 require 'securerandom'
 
 module Repost
@@ -108,11 +109,19 @@ module Repost
       "repost-#{SecureRandom.hex(8)}"
     end
 
+    # Calls the prototype's submit() so a param named "submit" (which the
+    # browser exposes as form.submit, shadowing the method) can't break it.
     def auto_submit_script
       nonce_attr = %Q( nonce="#{escape(autosubmit_nonce)}") if autosubmit_nonce
       %Q(<script#{nonce_attr}>
-        document.getElementById("#{escape(form_id)}").submit();
+        HTMLFormElement.prototype.submit.call(document.getElementById(#{js_string(form_id)}));
       </script>)
+    end
+
+    # A JS string literal that is also safe inside an HTML <script> element.
+    # HTML escaping is wrong here: entities are not decoded inside <script>.
+    def js_string(value)
+      JSON.generate(value.to_s).gsub(/[<>&  ]/) { |char| format('\u%04x', char.ord) }
     end
   end
 end
