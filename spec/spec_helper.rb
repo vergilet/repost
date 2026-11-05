@@ -1,6 +1,9 @@
 require "bundler/setup"
 
-require 'repost'
+# Load Action Controller before repost, the same order as in a Rails app,
+# so repost's controller helpers get installed.
+require "action_controller"
+require "repost"
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = ".rspec_status"
